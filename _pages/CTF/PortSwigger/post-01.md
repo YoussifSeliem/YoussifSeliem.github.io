@@ -1,6 +1,7 @@
 ---
 title: "Example Post: no thumbnail image"
 date: "2023-12-01"
+thumbnail: "/assets/img/thumbnail/ssrf.png"
 ---
 
 # Follow the guidance
