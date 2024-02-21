@@ -4,7 +4,6 @@ tags:
     - machine
     - sqli
     - suid
-    - linux privesc
 date: "2024-02-09"
 thumbnail: "/assets/img/thumbnail/PC.png"
 bookmark: true
