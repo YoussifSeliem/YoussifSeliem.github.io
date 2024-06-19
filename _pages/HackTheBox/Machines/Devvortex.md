@@ -125,6 +125,7 @@ logan@devvortex:~$ cat user.txt
 ```
 
 ## shell as root
+---
 
 ```bash
 logan@devvortex:~$ sudo -l
