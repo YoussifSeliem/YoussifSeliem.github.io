@@ -77,5 +77,5 @@ async function onFetch(event) {
 ```
 
 So We need to send a GET request to /FLAG.txt endpoint and we will get the flag
-<img src="/assets/img/wani24/capture.png">
+<img src="/assets/img/wani24/capture1.png">
 Congratzzzzzzzzzzzzzzz
