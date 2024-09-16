@@ -378,6 +378,7 @@ local: runner1.c remote: runner1.c
 
 Let's read the content of these files
 - run-tests.sh
+
 ```bash
 #!/bin/bash
 
@@ -395,6 +396,7 @@ Let's read the content of these files
 
 when i try to run any of these commands i get `Authentication failed`, let's look at the source code.
 - runner.c
+
 ```c
 // Version : 1
 
