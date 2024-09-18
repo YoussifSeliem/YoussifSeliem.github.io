@@ -1,5 +1,5 @@
 ---
-title: "Drive"
+title: "Intuition"
 tags:
     - machine
     - xss
@@ -94,7 +94,7 @@ user data cookie in plain
 {"user_id": 6, "username": "youssif", "role": "user"}|3dd219ed9ef9ae06cd1fc02198c330abc769ee67294c918ff7a85dcd4710e1e4
 {"user_id": 8, "username": "test", "role": "user"}|16265245f0ee972ac081d3ea812f4a36eb48feac79fd4e2d4d3b682c60fcf57b
 I couldn't make use of the cookie in this state, but there's an important note:
-The user_id us 6 and 8 etc..., this makes us wonder who has user_id = 1 (we all think it's admin and it's our goal)
+The user_id is 6 and 8 etc..., this makes us wonder who has user_id = 1 (we all think it's admin and it's our goal)
 
 after logging in also we found us got forwarded to `report` subdomain
 - report : report bug functionality
@@ -642,7 +642,7 @@ Run key missing or invalid.
 ```
 
 from the error we know that there's a key called `run` so let's make the content of json something like this `{"run":"true"}` and i got the same error.
-After many trials i got a new error when the content of json became ``{"run":{}}`
+After many trials i got a new error when the content of json became `{"run":{}}`
 ```bash
 lopez@intuition:~$ sudo /opt/runner2/runner2 ./tst.json 
 [sudo] password for lopez: 
