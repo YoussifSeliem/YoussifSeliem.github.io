@@ -1,5 +1,5 @@
 ---
-title: "Web: Coco Elda3eef Revenge (Hard) -- My First Blood --"
+title: "Web: Coco Elda3eef Revenge (Easy) -- My First Blood --"
 date: "2024-09-27"
 thumbnail: "/assets/img/thumbnail/ieee-victoris.png"
 ---
