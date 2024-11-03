@@ -113,7 +113,7 @@ public class Hijack extends AppCompatActivity {
             return insets;
         });
 
-            Intent resultIntent = new Intent("android.intent.action.test");
+            Intent resultIntent = new Intent();
             resultIntent.putExtra("RegistrationNumber", 5192);
             setResult(RESULT_OK,resultIntent);
             finish();
