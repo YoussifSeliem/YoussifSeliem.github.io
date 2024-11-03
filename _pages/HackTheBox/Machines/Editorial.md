@@ -13,6 +13,7 @@ bookmark: true
 <img src="/assets/img/thumbnail/Editorial.png" alt="Editorial">
 
 # Solution
+---
 ## Recon
 ---
 
@@ -235,7 +236,7 @@ credentials `prod:080217_Producti0n_2023!@`
 Let's SSH as prod
 
 ## Shell as root
-
+---
 Let's do some enumeration to see the capabilities of `prod` user
 ```bash
 prod@editorial:~$ sudo -l
