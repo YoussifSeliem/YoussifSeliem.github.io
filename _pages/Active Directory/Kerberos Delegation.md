@@ -11,7 +11,7 @@ Delegation means to delegate someone A to do specific task instead of someone B 
 
 # Kerberos Unconstrained Delegation
 
-It's allowing the first hop server (can be web server as example) to request access to any service on any computer in the domain.
+It's allowing the first hop server (can be web server as example) to request access to any resource in the domain.
 <img src="/assets/img/active dir/capture2.jpg" alt="unconstrained delegation">
 Before we go consider this situation ..
 You have an application server (has unconstrained delegation) and you as a user can access it
@@ -26,6 +26,8 @@ In This image we can see the operation
     - The server can use the TGT embedded in the TGS to request the TGS of server B as example
     - and it will get a valid TGS to access the server B because it's based on the user's privilages
 
+
+
 ## Attack
 
-The attack involves determining The components that has unconstrained delegation, then dumping the tickets it save so may lead us to impersonate the owner of the tickets
+The attack involves determining The components that has unconstrained delegation, then dumping the tickets it save so may lead us to impersonate the owners of the tickets
