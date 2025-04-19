@@ -4,14 +4,14 @@ tags:
     - machine
     - Active Directory
 date: "2025-04-19"
-thumbnail: "/assets/img/thumbnail/Administartor.png"
+thumbnail: "/assets/img/thumbnail/Administrator.png"
 bookmark: true
 ---
 
 # Description
 ---
 
-<img src="/assets/img/thumbnail/Administartor.png" alt="Administartor">
+<img src="/assets/img/thumbnail/Administrator.png" alt="Administartor">
 
 # Solution
 ---
